@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shoes_ecommerce_app/model/product_model.dart';
 import 'package:shoes_ecommerce_app/model/user_model.dart';
-import 'package:shoes_ecommerce_app/view/widgets/product_card.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -30,8 +29,10 @@ class FirestoreService {
             .where("category", isEqualTo: category)
             .get())
         .docs
-        .map((e) {
-      return ProductModel.fromJson(e.data());
+        .map((doc) {
+      var data = doc.data();
+      data['sizes'] = (data['sizes'] as List).cast<int>();
+      return ProductModel.fromJson(data);
     }).toList();
 
     return list;

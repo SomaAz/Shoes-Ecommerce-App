@@ -27,10 +27,22 @@ class CustomButton extends StatelessWidget {
           //
         ),
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 18),
-        ),
+        child: icon == null
+            ? Text(
+                text,
+                style: TextStyle(fontSize: 18),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon!,
+                  SizedBox(width: 10),
+                  Text(
+                    text,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
       ),
     );
   }

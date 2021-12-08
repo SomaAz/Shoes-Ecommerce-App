@@ -25,8 +25,7 @@ class ProductModel {
   // : rate = reviews.map((rev) => rev.rate).average;
 
   factory ProductModel.fromJson(Map<String, dynamic> data) {
-    print(data["sizes"]);
-    return ProductModel(
+    final product = ProductModel(
       id: data["id"],
       name: data["name"],
       description: data["description"],
@@ -39,5 +38,7 @@ class ProductModel {
       // rate: data["reviews"].map((rev) => rev.rate).average,
       rate: data["rate"],
     );
+    print(product);
+    return product;
   }
 }
